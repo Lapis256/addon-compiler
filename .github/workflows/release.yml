@@ -28,9 +28,13 @@ jobs:
       - name: Build
         run: deno task compile
 
+      - name: Get Tag
+        id: get-tag
+        run: echo ::set-output name=VERSION::${GITHUB_REF##*/}
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: build/addon_compiler.exe
-          name: "Release ${{ github.ref }}"
+          name: "Release ${{ steps.get-tag.outputs.VERSION }}"
           draft: true
