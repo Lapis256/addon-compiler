@@ -3,7 +3,9 @@
         "strict": true
     },
     "tasks": {
-        "compile": "deno compile --allow-read --allow-write --allow-env --output build/addon_compiler --importmap=import_map.json addon_compiler.ts"
+        "compile": "deno task compile_linux && deno task compile_windows",
+        "compile_linux": "deno compile --output build/addon_compiler --target x86_64-unknown-linux-gnu --allow-read --allow-write --allow-env --importmap=import_map.json addon_compiler.ts",
+        "compile_windows": "deno compile --output build/addon_compiler --target x86_64-pc-windows-msvc --allow-read --allow-write --allow-env --importmap=import_map.json addon_compiler.ts"
     },
     "importMap": "import_map.json"
 }
