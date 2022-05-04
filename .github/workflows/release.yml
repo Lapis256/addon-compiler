@@ -1,11 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# This workflow will install Deno then run Deno lint and test.
-# For more information see: https://github.com/denoland/setup-deno
-
 name: Release
 
 on:
@@ -25,8 +17,20 @@ jobs:
         with:
           deno-version: v1.x
 
+      - name: Install zip
+        run: |
+          sudo apt update
+          sudo apt install -y zip
+
       - name: Build
         run: deno task compile
+
+      - name: Make Zip
+        run: |
+          cd build
+          zip addon_compiler-x86_64-pc-windows-msvc.zip addon_compiler.exe
+          zip addon_compiler-x86_64-unknown-linux-gnu.zip addon_compiler
+          cd ..
 
       - name: Get Tag
         id: get-tag
@@ -36,7 +40,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            build/addon_compiler
-            build/addon_compiler.exe
+            build/addon_compiler-x86_64-pc-windows-msvc.zip
+            build/addon_compiler-x86_64-unknown-linux-gnu.zip
           name: "Release ${{ steps.get-tag.outputs.VERSION }}"
           draft: true
