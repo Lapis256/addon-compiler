@@ -35,6 +35,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/addon_compiler.exe
+          files: |
+            build/addon_compiler
+            build/addon_compiler.exe
           name: "Release ${{ steps.get-tag.outputs.VERSION }}"
           draft: true
