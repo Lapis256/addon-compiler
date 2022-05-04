@@ -1,0 +1,10 @@
+{
+    "imports": {
+        "cliffy/": "https://deno.land/x/cliffy@v0.23.2/",
+        "jszip/": "https://deno.land/x/jszip@0.11.0/",
+        "fs/": "https://deno.land/std@0.137.0/fs/",
+        "path/": "https://deno.land/std@0.137.0/path/",
+        "jsonc-parser/": "https://esm.sh/jsonc-parser@v3.0.0/",
+        "minifier/": "https://deno.land/x/minifier@v1.1.1/"
+    }
+}

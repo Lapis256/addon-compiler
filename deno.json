@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "strict": true
+    },
+    "tasks": {
+        "compile": "deno compile --allow-read --allow-write --allow-env --output build/addon_compiler --importmap=import_map.json addon_compiler.ts"
+    },
+    "importMap": "import_map.json"
+}
